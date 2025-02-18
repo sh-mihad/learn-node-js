@@ -1,4 +1,3 @@
-const {dif,sum} = require("./lib")
+const os = require('os');
 
-console.log("dif",dif(7,5));
-console.log("sum",sum(10,5));
+console.log("os Result",os.cpus());
