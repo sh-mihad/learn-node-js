@@ -1,7 +1,7 @@
-const fs = require("fs")
-const data = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
-const products = data.products;
-
+const { products } = require("../utils/getData");
+// const fs = require("fs")
+// const data = JSON.parse(fs.readFileSync("data.json","utf-8"))
+// const products = data.products
 
 const createProducts = (req, res) => {
   products.push(req.body);
