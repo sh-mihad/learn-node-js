@@ -1,5 +1,4 @@
 const { users } = require("../utils/getData");
-console.log("user",users);
 
 const createUser = (req, res) => {
   users.push(req.body);
