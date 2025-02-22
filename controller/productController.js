@@ -26,10 +26,14 @@ const getProducts =async (req, res) => {
 };
 
 // get a product by ID
-const getProduct = (req, res) => {
-  const id = +req.params.id;
-  const product = products.find((p) => p.id === id);
-  res.json(product);
+const getProduct = async(req, res) => {
+  try {
+    const id = req.params.id
+    const product = await Product.findById(id)
+    res.status(200).json(product)
+  } catch (error) {
+    res.status(404).json(error.message)
+  }
 };
 
 // replace product by ID
