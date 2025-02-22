@@ -1,6 +1,7 @@
 
 const productRouter = require("./router/productRouter")
 const userRouter = require("./router/userRouter")
+const taskRouter = require('./router/taskRouter')
 const express = require("express");
 const mongoose = require('mongoose');
 
@@ -21,6 +22,7 @@ async function main() {
 // router
 server.use("/products",productRouter.router)
 server.use("/users",userRouter.router)
+server.use("/tasks",taskRouter.router)
 
 server.listen(8080, () => {
   console.log("server started");
