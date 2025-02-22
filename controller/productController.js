@@ -1,11 +1,13 @@
-const { products } = require("../utils/getData");
-// const fs = require("fs")
-// const data = JSON.parse(fs.readFileSync("data.json","utf-8"))
-// const products = data.products
-
-const createProducts = (req, res) => {
-  products.push(req.body);
-  res.status(201).json(req.body);
+const model =require("../model/product")
+const Product = model.Product
+const createProducts =async (req, res) => {
+ const product =  new Product(req.body)
+try {
+  const result = await product.save()
+  res.status(201).json(result)
+} catch (error) {
+  res.status(400).json(error.message)
+}  
 };
 const getProducts = (req, res) => {
   res.json(products);
