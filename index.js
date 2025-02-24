@@ -4,6 +4,7 @@ const userRouter = require("./router/userRouter")
 const taskRouter = require('./router/taskRouter')
 const express = require("express");
 const mongoose = require('mongoose');
+const authRouter = require("./router/auth")
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
 // const morgan = require("morgan");
@@ -20,7 +21,7 @@ async function main() {
 }
 
 
-server.use((req,res,next)=>{
+const authMiddleware=(req,res,next)=>{
   const token = req.headers.authorization.split(" ")[1]
   // const token = req.get(Bearer)
   jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
@@ -31,10 +32,11 @@ server.use((req,res,next)=>{
       res.status(401).send("Unauthorized token")
     }
   });
-})
+}
 // router
-server.use("/products",productRouter.router)
-server.use("/users",userRouter.router)
+server.use("/auth",authRouter.router)
+server.use("/products",authMiddleware,productRouter.router)
+server.use("/users",authMiddleware,userRouter.router)
 server.use("/tasks",taskRouter.router)
 
 server.listen(8080, () => {
