@@ -23,10 +23,10 @@ async function main() {
 
 
 const authMiddleware=(req,res,next)=>{
+  if(!req.headers.authorization) res.status(401).send("Unauthorized token")
   const token = req.headers.authorization.split(" ")[1]
   // const token = req.get(Bearer)
   jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
-    console.log(decoded)
     if(decoded){
       next()
     }else{

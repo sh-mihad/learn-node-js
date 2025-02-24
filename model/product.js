@@ -10,7 +10,7 @@ const productSchema = new Schema({
     rating:{type:Number,min:[0,"Rating will be positive number"],max:[5,"you cna't give rating  more than 5"]},
     brand:{type:String,required:true},
     category:{type:String,required:true},
-    thumbnail:{type:String,required:true},
+    thumbnail:{type:String},
     images:[String],
      
   })

@@ -16,8 +16,10 @@ const createProducts = async (req, res) => {
 
 // get all products
 const getProducts = async (req, res) => {
+  const page = req.query.page;
+  const pageSize = req.query.pageSize;
   try {
-    const products = await Product.find();
+    const products = await Product.find().skip(pageSize*(page-1)).limit(pageSize);
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json(error.message);
