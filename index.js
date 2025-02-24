@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const authRouter = require("./router/auth")
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
+// const privateKy = fs.readFileSync(path.resolve(__dirname,"../private.key"),"utf-8");
 // const morgan = require("morgan");
 const server = express();
 server.use(express.json());
